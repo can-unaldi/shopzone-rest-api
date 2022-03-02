@@ -6,10 +6,14 @@ const productsRoutes = require("./routes/products-routes");
 const usersRoutes = require("./routes/users-routes");
 const storesRoutes = require("./routes/stores-routes");
 const HttpError = require("./models/http-error");
+const path = require('path');
+
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static(path.join("public")))
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -25,6 +29,9 @@ app.use("/api/products", productsRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/stores", storesRoutes);
 
+app.use((req, res, next) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"))
+})
 
 app.use((req, res, next) => {
   const error = new HttpError("Could not find this route.", 404);
