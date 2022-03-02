@@ -1,0 +1,8 @@
+{
+    "env":{
+        "DB_USER":"can",
+        "DB_PASSWORD":"Alicnn37",
+        "DB_NAME":"shopzone",
+        "JWT_KEY":"super_secret_private_key"
+    }
+}
